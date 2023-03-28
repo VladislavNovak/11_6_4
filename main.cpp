@@ -10,6 +10,16 @@ using std::endl;
 using std::vector;
 using std::string;
 
+void displayBoard(const vector<vector<char>> &board) {
+    cout << "\n\tPLAYER - 1 [X]\t PLAYER - 2 [O]\n" << endl;
+
+    for (int line = 0; line < 3; ++line) {
+        cout << "\t\t     |     |     \n\t\t  ";
+        for (int cell = 0; cell < 3; ++cell) cout << board[line][cell] << (cell < 2 ? "  |  " : " \n");
+        cout << (line < 2 ? "\t\t_____|_____|_____\n" : "\t\t     |     |     \n");
+    }
+}
+
 void printReport(const vector<int>& result, const vector<int>& charData, int gridNumber, const char TIC, const char TAC) {
     // количество символов для победы
     const int AMOUNT_TO_WIN = 3;
@@ -142,6 +152,7 @@ void checkWinner(const vector<vector<char>> &grid, int gridNumber) {
     vector<int> charData = getDataForEachChar(grid, TIC, TAC);
 
     printReport(lines, charData, gridNumber, TIC, TAC);
+    displayBoard(grid);
 }
 
 int main() {
